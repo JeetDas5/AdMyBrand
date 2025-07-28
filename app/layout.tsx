@@ -21,9 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${bricolageGrotesque.variable} antialiased`}
-      >
+      <body className={`${bricolageGrotesque.variable} antialiased`}>
         <AnimationInitializer />
         {children}
       </body>

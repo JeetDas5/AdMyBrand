@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react';
 import GlassmorphicCard from '../ui/GlassmorphicCard';
 import Button from '../ui/Button';
@@ -164,7 +166,7 @@ export default function Pricing() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="max-w-3xl mx-auto text-center mb-12 animate-fade-in">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">Simple, Transparent Pricing</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4 bg-gradient-to-r from-white/70 to-blue-600 bg-clip-text text-transparent">Simple, Transparent Pricing</h2>
           <p className="text-xl text-foreground/70 mb-8">
             Choose the plan that&apos;s right for your business and start optimizing your ad campaigns today.
           </p>
