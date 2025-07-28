@@ -1,8 +1,21 @@
-export default function Home(){
+import Header from '@/components/sections/Header';
+import Hero from '@/components/sections/Hero';
+import Features from '@/components/sections/Features';
+import Testimonials from '@/components/sections/Testimonials';
+import CTA from '@/components/sections/CTA';
+import Footer from '@/components/sections/Footer';
+
+export default function Home() {
   return (
-    <div>
-      <h1 className="text-3xl font-bold">Welcome to AdMyBrand</h1>
-      <p className="mt-4">Your AI-powered ad platform.</p>
-    </div>
+    <>
+      <Header />
+      <main>
+        <Hero />
+        <Features />
+        <Testimonials />
+        <CTA />
+      </main>
+      <Footer />
+    </>
   );
 }

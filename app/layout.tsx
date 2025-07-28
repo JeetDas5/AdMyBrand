@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
+import AnimationInitializer from "@/components/ui/AnimationInitializer";
 
 const bricolageGrotesque = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -23,6 +24,7 @@ export default function RootLayout({
       <body
         className={`${bricolageGrotesque.variable} antialiased`}
       >
+        <AnimationInitializer />
         {children}
       </body>
     </html>

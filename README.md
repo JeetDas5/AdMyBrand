@@ -1,4 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AdMyBrand - Modern SaaS Landing Page
+
+A modern, responsive landing page for AdMyBrand, an AI-powered advertising platform. This project showcases modern UI/UX design trends including glassmorphism, subtle animations, and mobile-first responsive design.
+
+![AdMyBrand Landing Page](https://example.com/screenshot.png)
+
+## Features
+
+- **Modern Design**: Implements 2025 design trends including glassmorphism, subtle animations, and modern typography
+- **Responsive Layout**: Fully responsive design that works flawlessly on all devices
+- **Smooth Animations**: Elements animate in on scroll for an engaging user experience
+- **Dark Mode Support**: Seamless experience in both light and dark modes
+- **Accessibility**: Built with accessibility in mind for all users
+
+## Tech Stack
+
+- **Framework**: [Next.js](https://nextjs.org) with App Router
+- **Styling**: [Tailwind CSS](https://tailwindcss.com) for utility-first styling
+- **Typography**: Bricolage Grotesque from Google Fonts
+- **Animations**: Custom CSS animations with Intersection Observer API
+
+## Project Structure
+
+- `app/` - Next.js app router pages and layouts
+- `components/` - Reusable React components
+  - `ui/` - UI components like buttons, cards, etc.
+  - `sections/` - Page sections like header, hero, features, etc.
+- `lib/` - Utility functions and helpers
+  - `utils/` - General utility functions
+
+## Components
+
+### UI Components
+
+- **GlassmorphicCard**: Reusable component for creating glassmorphic UI elements
+- **Button**: Versatile button component with various styles and states
+
+### Section Components
+
+- **Header**: Navigation bar with mobile responsiveness
+- **Hero**: Main banner section with call-to-action
+- **Features**: Showcase of product features
+- **Testimonials**: Customer testimonials and social proof
+- **CTA**: Call-to-action section with form
+- **Footer**: Site footer with links and information
 
 ## Getting Started
 
@@ -16,21 +60,30 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Customization
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Colors
+
+The primary colors can be customized in `app/globals.css` by modifying the CSS variables in the `:root` section.
+
+### Content
+
+The content for each section can be modified in the respective component files in the `components/sections/` directory.
+
+### Animations
+
+Animation classes are defined in `app/globals.css` and can be customized as needed. The animation initialization is handled by the `AnimationInitializer` component.
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+To learn more about the technologies used in this project:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [CSS Animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animations/Using_CSS_animations)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment
 
-## Deploy on Vercel
+The easiest way to deploy this Next.js app is to use the [Vercel Platform](https://vercel.com/new) from the creators of Next.js.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
