@@ -4,10 +4,10 @@ import React from 'react';
 import Link from 'next/link';
 import GlassmorphicCard from '../ui/GlassmorphicCard';
 import AnimatedContainer, { StaggerContainer } from '../ui/AnimatedContainer';
-import { 
-  Twitter, 
-  Linkedin, 
-  Github, 
+import {
+  Twitter,
+  Linkedin,
+  Github,
   Instagram,
   Mail,
   MapPin,
@@ -19,7 +19,7 @@ import {
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  
+
   const footerLinks = {
     product: [
       { name: 'Features', href: '#features' },
@@ -46,27 +46,27 @@ export default function Footer() {
       { name: 'Cookies', href: '#cookies' },
     ],
   };
-  
+
   const socialLinks = [
-    { 
+    {
       name: 'Twitter',
       href: '#twitter',
       icon: <Twitter className="w-5 h-5" />,
       color: 'hover:text-blue-400'
     },
-    { 
+    {
       name: 'LinkedIn',
       href: '#linkedin',
       icon: <Linkedin className="w-5 h-5" />,
       color: 'hover:text-blue-600'
     },
-    { 
+    {
       name: 'GitHub',
       href: '#github',
       icon: <Github className="w-5 h-5" />,
       color: 'hover:text-gray-900 dark:hover:text-white'
     },
-    { 
+    {
       name: 'Instagram',
       href: '#instagram',
       icon: <Instagram className="w-5 h-5" />,
@@ -82,12 +82,12 @@ export default function Footer() {
     },
     {
       icon: <Phone className="w-4 h-4" />,
-      text: '+1 (555) 123-4567',
+      text: '+91 1234567890',
       href: 'tel:+15551234567'
     },
     {
       icon: <MapPin className="w-4 h-4" />,
-      text: 'San Francisco, CA',
+      text: 'Bhubaneswar, Odisha',
       href: '#location'
     }
   ];
@@ -97,7 +97,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-gradient-to-br from-gray-50 via-blue-50/50 to-purple-50/50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 pt-20 pb-8 overflow-hidden">
+    <footer className="relative bg-gradient-to-br from-gray-50 via-blue-50/50 to-purple-50/50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 pt-5 md:pt-20 pb-2 md:pb-8 overflow-hidden">
       {/* Background decorations */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute top-20 left-20 w-64 h-64 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-3xl animate-pulse-glow"></div>
@@ -106,13 +106,13 @@ export default function Footer() {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Main footer content */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-4 md:mb-16">
           {/* Brand section */}
           <div className="lg:col-span-4">
             <AnimatedContainer animation="fadeInUp">
               <Link href="/" className="inline-block mb-6 group">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300  ml-16">
                     <Sparkles className="w-5 h-5 text-white" />
                   </div>
                   <span className="text-3xl font-bold gradient-text-primary">
@@ -120,14 +120,14 @@ export default function Footer() {
                   </span>
                 </div>
               </Link>
-              
-              <p className="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed max-w-md">
-                Transform your advertising with AI-powered creativity. AdMyBrand helps businesses 
+
+              <p className="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed max-w-md text-center">
+                Transform your advertising with AI-powered creativity. AdMyBrand helps businesses
                 create, optimize, and scale their advertising campaigns across all platforms.
               </p>
-              
+
               {/* Contact info */}
-              <div className="space-y-4 mb-8">
+              <div className="space-y-2 md:space-y-4 mb-4 md:mb-8 text-center mx-auto">
                 {contactInfo.map((item, index) => (
                   <a
                     key={index}
@@ -141,9 +141,9 @@ export default function Footer() {
                   </a>
                 ))}
               </div>
-              
+
               {/* Social links */}
-              <div className="flex gap-4">
+              <div className="flex gap-4 text-center">
                 {socialLinks.map((link) => (
                   <a
                     key={link.name}
@@ -157,24 +157,24 @@ export default function Footer() {
               </div>
             </AnimatedContainer>
           </div>
-          
+
           {/* Links sections */}
           <div className="lg:col-span-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-8">
               {Object.entries(footerLinks).map(([category, links], categoryIndex) => (
-                <AnimatedContainer 
-                  key={category} 
-                  animation="fadeInUp" 
+                <AnimatedContainer
+                  key={category}
+                  animation="fadeInUp"
                   delay={0.1 * (categoryIndex + 1)}
                 >
                   <div>
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-6 capitalize">
+                    <h3 className="md:text-lg font-bold text-gray-900 dark:text-white mb-4 md:mb-6 capitalize text-center">
                       {category}
                     </h3>
-                    <ul className="space-y-4">
+                    <ul className="space-y-2 text-center md:space-y-4">
                       {links.map((link) => (
                         <li key={link.name}>
-                          <Link 
+                          <Link
                             href={link.href}
                             className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 text-sm hover:translate-x-1 transform inline-block"
                           >
@@ -189,7 +189,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        
+
         {/* Newsletter section */}
         <AnimatedContainer animation="fadeInUp" delay={0.6}>
           <GlassmorphicCard className="p-8 mb-12" variant="gradient" glowEffect>
@@ -213,24 +213,25 @@ export default function Footer() {
             </div>
           </GlassmorphicCard>
         </AnimatedContainer>
-        
+
         {/* Bottom section */}
         <AnimatedContainer animation="fadeInUp" delay={0.8}>
-          <GlassmorphicCard className="p-6" variant="frosted">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
-                <span>&copy; {currentYear} AdMyBrand. All rights reserved.</span>
-                <span className="hidden sm:inline">•</span>
-                <span className="hidden sm:inline flex items-center gap-1">
-                  Made with <Heart className="w-4 h-4 text-red-500 fill-current" /> in San Francisco
+          <GlassmorphicCard className="p-4 md:p-6" variant="frosted">
+            <div className="flex flex-col md:flex-row justify-center gap-5 md:gap-20">
+              <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 text-center">
+                <span className='text-center mx-auto'>&copy; {currentYear} AdMyBrand. All rights reserved.</span>
+              </div>
+              <div className='flex item-center justify-center '>
+                <span className="flex items-center gap-1">
+                  Made with <Heart className="w-4 h-4 text-red-500 fill-current" /> by Jeet
                 </span>
               </div>
-              
+
               <div className="flex items-center gap-6">
                 <div className="flex flex-wrap gap-4">
                   {footerLinks.legal.map((link) => (
-                    <Link 
-                      key={link.name} 
+                    <Link
+                      key={link.name}
                       href={link.href}
                       className="text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
                     >
@@ -238,7 +239,7 @@ export default function Footer() {
                     </Link>
                   ))}
                 </div>
-                
+
                 {/* Back to top button */}
                 <button
                   onClick={scrollToTop}
