@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import React, { useState, useRef } from 'react';
@@ -7,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import GlassmorphicCard from '@/components/ui/GlassmorphicCard';
 import Button from '@/components/ui/Button';
 import AnimatedContainer from '@/components/ui/AnimatedContainer';
-import ProgressIndicator, { progressPresets } from '@/components/ui/ProgressIndicator';
+import ProgressIndicator from '@/components/ui/ProgressIndicator';
 import { useToast, toast } from '@/components/ui/Toast';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -203,6 +204,7 @@ export default function SignupPage() {
         'Something went wrong. Please try again.',
         { duration: 5000 }
       ));
+      console.error('Signup error:', error);
     } finally {
       setIsLoading(false);
     }
@@ -680,7 +682,7 @@ export default function SignupPage() {
               ]}
               selectedValues={platforms}
               onChange={(value) => handleArrayToggle('platforms', value)}
-              error={errors.platforms as string}
+              error={typeof errors.platforms === 'string' ? errors.platforms : undefined}
             />
 
             <CheckboxGroup
@@ -693,7 +695,7 @@ export default function SignupPage() {
               ]}
               selectedValues={goals}
               onChange={(value) => handleArrayToggle('goals', value)}
-              error={errors.goals as string}
+              error={typeof errors.goals === 'string' ? errors.goals : undefined}
             />
           </div>
         );
@@ -746,7 +748,7 @@ export default function SignupPage() {
                   className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mt-0.5"
                 />
                 <span className="text-sm text-gray-600 dark:text-gray-300">
-                  I'd like to receive marketing emails about AdMyBrand updates and tips
+                  I&apos;d like to receive marketing emails about AdMyBrand updates and tips
                 </span>
               </label>
             </div>
@@ -757,7 +759,7 @@ export default function SignupPage() {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-sm text-red-500 dark:text-red-400"
               >
-                {errors.acceptTerms as string}
+                {typeof errors.acceptTerms === 'string' ? errors.acceptTerms : ''}
               </motion.p>
             )}
           </div>
