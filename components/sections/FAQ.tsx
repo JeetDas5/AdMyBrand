@@ -2,8 +2,12 @@
 
 import React, { useState } from "react";
 import GlassmorphicCard from "../ui/GlassmorphicCard";
+import Section, { SectionHeader } from "../ui/Section";
+import AnimatedContainer, { StaggerContainer } from "../ui/AnimatedContainer";
+import { ChevronDown, HelpCircle, MessageCircle, ArrowRight } from "lucide-react";
+import Button from "../ui/Button";
 
-// FAQ item component with collapsible answer
+// Enhanced FAQ item component with collapsible answer
 const FAQItem = ({
   question,
   answer,
@@ -15,56 +19,53 @@ const FAQItem = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Calculate animation delay based on index
-  const animationDelay = `animation-delay-${index * 100}`;
-
   return (
-    <div className={`animate-fade-in ${animationDelay}`}>
-      <GlassmorphicCard
-        className={`mb-4 overflow-hidden transition-all duration-300 ${
-          isOpen ? "shadow-md" : ""
-        }`}
-        opacity="light"
-        border={true}
+    <GlassmorphicCard
+      className={`mb-4 overflow-hidden transition-all duration-500 hover-lift group ${
+        isOpen ? "shadow-xl shadow-blue-500/10" : ""
+      }`}
+      variant="gradient"
+      hoverEffect
+    >
+      <button
+        className="flex justify-between items-center w-full p-6 text-left cursor-pointer group/button"
+        onClick={() => setIsOpen(!isOpen)}
+        aria-expanded={isOpen}
       >
-        <button
-          className="flex justify-between items-center w-full p-5 text-left cursor-pointer "
-          onClick={() => setIsOpen(!isOpen)}
-          aria-expanded={isOpen}
-        >
-          <h3 className="text-lg font-medium">{question}</h3>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={2}
-            stroke="currentColor"
-            className={`w-5 h-5 text-primary transition-transform duration-300 ${
-              isOpen ? "rotate-180" : ""
-            }`}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-            />
-          </svg>
-        </button>
-
-        <div
-          className={`overflow-hidden transition-all duration-300 ${
-            isOpen ? "max-h-96" : "max-h-0"
-          }`}
-        >
-          <div className="p-5 pt-0 text-foreground/80">{answer}</div>
+        <div className="flex items-start gap-4 flex-1">
+          <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0 mt-1">
+            <HelpCircle className="w-4 h-4 text-blue-500" />
+          </div>
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white group-hover/button:text-blue-600 dark:group-hover/button:text-blue-400 transition-colors duration-200">
+            {question}
+          </h3>
         </div>
-      </GlassmorphicCard>
-    </div>
+        <ChevronDown
+          className={`w-5 h-5 text-blue-500 transition-all duration-300 flex-shrink-0 ml-4 ${
+            isOpen ? "rotate-180" : ""
+          } group-hover/button:scale-110`}
+        />
+      </button>
+
+      <div
+        className={`overflow-hidden transition-all duration-500 ${
+          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <div className="px-6 pb-6">
+          <div className="pl-12 pr-4">
+            <div className="h-px bg-gradient-to-r from-blue-500/20 to-transparent mb-4"></div>
+            <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+              {answer}
+            </p>
+          </div>
+        </div>
+      </div>
+    </GlassmorphicCard>
   );
 };
 
 export default function FAQ() {
-  // FAQ data
   const faqs = [
     {
       question: "How does AdMyBrand's AI technology work?",
@@ -109,67 +110,87 @@ export default function FAQ() {
   ];
 
   return (
-    <section id="faq" className="py-20 relative">
-      {/* Background gradient */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-950"></div>
-
-      {/* Background shapes */}
+    <Section 
+      id="faq" 
+      background="gradient" 
+      padding="xl"
+      className="relative overflow-hidden"
+    >
+      {/* Enhanced background effects */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute bottom-[20%] right-[10%] w-[300px] h-[300px] rounded-full bg-gradient-to-r from-primary/10 to-blue-400/10 blur-3xl"></div>
-        <div className="absolute top-[10%] left-[5%] w-[250px] h-[250px] rounded-full bg-gradient-to-r from-purple-400/10 to-pink-400/10 blur-3xl"></div>
+        <div className="absolute bottom-[20%] right-[10%] w-[400px] h-[400px] rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-3xl animate-pulse-glow"></div>
+        <div className="absolute top-[10%] left-[5%] w-[300px] h-[300px] rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 blur-3xl animate-pulse-glow animation-delay-500"></div>
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section header */}
-        <div className="max-w-3xl mx-auto text-center mb-12 animate-fade-in">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4 bg-gradient-to-r from-white/70 to-blue-600 bg-clip-text text-transparent">
+        {/* Enhanced Section header */}
+        <AnimatedContainer animation="fadeInUp" className="max-w-4xl mx-auto text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-sm font-medium mb-6">
+            <HelpCircle className="w-4 h-4" />
+            <span>Got Questions?</span>
+          </div>
+          
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold gradient-text-primary mb-6">
             Frequently Asked Questions
           </h2>
-          <p className="text-xl text-foreground/70">
+          
+          <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
             Everything you need to know about AdMyBrand and how it can transform
             your advertising strategy.
           </p>
-        </div>
+        </AnimatedContainer>
 
-        {/* FAQ items */}
-        <div className="max-w-3xl mx-auto">
-          {faqs.map((faq, index) => (
-            <FAQItem
-              key={index}
-              question={faq.question}
-              answer={faq.answer}
-              index={index}
-            />
-          ))}
-        </div>
-
-        {/* Additional help CTA */}
-        <div className="mt-12 text-center animate-fade-in animation-delay-800">
-          <p className="text-foreground/70 mb-4">
-            Still have questions? We&apos;re here to help.
-          </p>
-          <a
-            href="#contact"
-            className="inline-flex items-center text-primary hover:text-primary/80 font-medium"
-          >
-            Contact our support team
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="w-4 h-4 ml-1"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+        {/* FAQ items with stagger animation */}
+        <div className="max-w-4xl mx-auto mb-16">
+          <StaggerContainer staggerDelay={0.1} animation="fadeInUp">
+            {faqs.map((faq, index) => (
+              <FAQItem
+                key={index}
+                question={faq.question}
+                answer={faq.answer}
+                index={index}
               />
-            </svg>
-          </a>
+            ))}
+          </StaggerContainer>
         </div>
+
+        {/* Enhanced help CTA */}
+        <AnimatedContainer animation="scaleIn" delay={0.8}>
+          <GlassmorphicCard className="max-w-2xl mx-auto p-8 text-center" variant="frosted" glowEffect>
+            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center mx-auto mb-6">
+              <MessageCircle className="w-8 h-8 text-blue-500" />
+            </div>
+            
+            <h3 className="text-2xl font-bold gradient-text-primary mb-4">
+              Still have questions?
+            </h3>
+            
+            <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+              Our support team is here to help you get the most out of AdMyBrand. 
+              Get in touch and we'll respond within 24 hours.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                variant="gradient" 
+                size="lg"
+                icon={<MessageCircle className="w-5 h-5" />}
+              >
+                Contact Support
+              </Button>
+              <Button 
+                variant="outline" 
+                size="lg"
+                icon={<ArrowRight className="w-5 h-5" />}
+                iconPosition="right"
+                className="border-gray-300 dark:border-gray-600"
+              >
+                Browse Help Center
+              </Button>
+            </div>
+          </GlassmorphicCard>
+        </AnimatedContainer>
       </div>
-    </section>
+    </Section>
   );
 }
