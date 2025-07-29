@@ -35,6 +35,20 @@ export default function LoginPage() {
   const router = useRouter();
   const { addToast } = useToast();
   const [showPassword, setShowPassword] = useState(false);
+  
+  const togglePasswordVisibility = () => {
+    // Store current value before type change
+    const currentValue = passwordRef.current?.value || '';
+    setShowPassword(!showPassword);
+    console.log('pass');
+    
+    // Restore value after React re-renders the input
+    setTimeout(() => {
+      if (passwordRef.current) {
+        passwordRef.current.value = currentValue;
+      }
+    }, 0);
+  };
   const [isLoading, setIsLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [errors, setErrors] = useState<Partial<LoginForm>>({});
@@ -213,7 +227,7 @@ export default function LoginPage() {
                   />
                   <button
                     type="button"
-                    onClick={() => setShowPassword(!showPassword)}
+                    onClick={togglePasswordVisibility}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors z-10"
                   >
                     {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}

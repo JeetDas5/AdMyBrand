@@ -62,6 +62,32 @@ export default function SignupPage() {
   const [currentStep, setCurrentStep] = useState(0);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    // Store current value before type change
+    const currentValue = passwordRef.current?.value || '';
+    setShowPassword(!showPassword);
+
+    // Restore value after React re-renders the input
+    setTimeout(() => {
+      if (passwordRef.current) {
+        passwordRef.current.value = currentValue;
+      }
+    }, 0);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    // Store current value before type change
+    const currentValue = confirmPasswordRef.current?.value || '';
+    setShowConfirmPassword(!showConfirmPassword);
+
+    // Restore value after React re-renders the input
+    setTimeout(() => {
+      if (confirmPasswordRef.current) {
+        confirmPasswordRef.current.value = currentValue;
+      }
+    }, 0);
+  };
   const [isLoading, setIsLoading] = useState(false);
 
   // Use refs for form inputs to avoid controlled component issues
@@ -454,7 +480,7 @@ export default function SignupPage() {
                 />
                 <button
                   type="button"
-                  onClick={() => setShowPassword(!showPassword)}
+                  onClick={togglePasswordVisibility}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors z-10"
                 >
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
@@ -494,7 +520,7 @@ export default function SignupPage() {
                 />
                 <button
                   type="button"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  onClick={toggleConfirmPasswordVisibility}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors z-10"
                 >
                   {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
