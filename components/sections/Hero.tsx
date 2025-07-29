@@ -46,25 +46,23 @@ export default function Hero() {
 
                 <AnimatedContainer animation="fadeInUp" delay={0.6}>
                   <p className="text-xl text-white/70 mb-8 leading-relaxed">
-                    AdMyBrand uses cutting-edge AI to create, optimize, and manage
-                    your advertising campaigns across all platforms, delivering
-                    better results with less effort.
+                  ADmyBRAND is the tech-age solution for omnichannel advertising. It is analytics-driven ad-exchange for advertisement on outdoor media, influencer, mobile, radio, TV and newspaper.
                   </p>
                 </AnimatedContainer>
 
                 <AnimatedContainer animation="fadeInUp" delay={0.8}>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
-                    <Button 
-                      variant="gradient" 
-                      size="lg" 
+                    <Button
+                      variant="gradient"
+                      size="lg"
                       icon={<ArrowRight className="w-5 h-5" />}
                       iconPosition="right"
                       className="group"
                     >
                       Get Started Free
                     </Button>
-                    <Button 
-                      variant="outline" 
+                    <Button
+                      variant="outline"
                       size="lg"
                       icon={<Play className="w-5 h-5" />}
                       className="text-white/80 border-white/30 hover:bg-white/10"
@@ -93,7 +91,7 @@ export default function Hero() {
                   <StaggerContainer staggerDelay={0.2} animation="bounceIn">
                     <div className="grid grid-cols-3 gap-4">
                       {stats.map((stat, index) => (
-                        <GlassmorphicCard 
+                        <GlassmorphicCard
                           key={index}
                           className="px-4 py-6 text-center hover-lift"
                           variant="frosted"
@@ -116,7 +114,7 @@ export default function Hero() {
               {/* Hero image */}
               <AnimatedContainer animation="fadeInRight" delay={0.4}>
                 <div className="relative lg:h-[600px] flex items-center justify-center">
-                  <GlassmorphicCard 
+                  <GlassmorphicCard
                     className="w-full max-w-lg mx-auto overflow-hidden p-6 relative hover-lift animate-float"
                     variant="gradient"
                     glowEffect
@@ -134,7 +132,7 @@ export default function Hero() {
                               AdMyBrand Dashboard
                             </div>
                           </div>
-                          
+
                           {/* Dashboard content */}
                           <div className="space-y-3">
                             <div className="h-8 bg-gradient-to-r from-blue-200 to-purple-200 dark:from-blue-800 dark:to-purple-800 rounded-md w-3/4 animate-pulse"></div>
@@ -161,7 +159,7 @@ export default function Hero() {
                     {/* Floating elements with enhanced animations */}
                     <div className="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-r from-yellow-400/30 to-orange-400/30 rounded-full blur-2xl animate-pulse-glow"></div>
                     <div className="absolute -bottom-6 -left-6 w-40 h-40 bg-gradient-to-r from-blue-500/30 to-purple-500/30 rounded-full blur-2xl animate-pulse-glow animation-delay-500"></div>
-                    
+
                     {/* Sparkle effects */}
                     <div className="absolute top-4 right-8 w-2 h-2 bg-white rounded-full animate-ping"></div>
                     <div className="absolute bottom-8 left-4 w-1 h-1 bg-blue-400 rounded-full animate-ping animation-delay-300"></div>

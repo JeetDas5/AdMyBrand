@@ -24,7 +24,7 @@ export const ScrollReveal = ({
   className?: string;
 }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { threshold, once });
+  const isInView = useInView(ref, { once });
   const controls = useAnimation();
 
   const variants = {

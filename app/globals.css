@@ -40,6 +40,10 @@ body {
   h1 {
     @apply text-3xl font-bold;
   }
+
+  button{
+    @apply cursor-pointer;
+  }
 }
 
 @layer components {}

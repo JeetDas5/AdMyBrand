@@ -1,95 +1,46 @@
 "use client";
 
-import React, { useState, useRef } from 'react';
-import { motion } from 'motion/react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import GlassmorphicCard from '@/components/ui/GlassmorphicCard';
-import Button from '@/components/ui/Button';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
 import AnimatedContainer from '@/components/ui/AnimatedContainer';
 import { useToast, toast } from '@/components/ui/Toast';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import {
-  Eye,
-  EyeOff,
   Mail,
   Lock,
   ArrowRight,
   Sparkles,
   Shield,
-  Zap,
   CheckCircle,
   Github,
   Chrome,
   Apple
 } from 'lucide-react';
 
-interface LoginForm {
-  email: string;
-  password: string;
-  rememberMe: boolean;
-}
-
 export default function LoginPage() {
   const router = useRouter();
   const { addToast } = useToast();
-  const [showPassword, setShowPassword] = useState(false);
-  
-  const togglePasswordVisibility = () => {
-    // Store current value before type change
-    const currentValue = passwordRef.current?.value || '';
-    setShowPassword(!showPassword);
-    console.log('pass');
-    
-    // Restore value after React re-renders the input
-    setTimeout(() => {
-      if (passwordRef.current) {
-        passwordRef.current.value = currentValue;
-      }
-    }, 0);
-  };
   const [isLoading, setIsLoading] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
-  const [errors, setErrors] = useState<Partial<LoginForm>>({});
-  
-  // Use refs for form inputs to avoid controlled component issues
-  const emailRef = useRef<HTMLInputElement>(null);
-  const passwordRef = useRef<HTMLInputElement>(null);
 
-  const validateForm = (): boolean => {
-    const newErrors: Partial<LoginForm> = {};
-    const email = emailRef.current?.value || '';
-    const password = passwordRef.current?.value || '';
-
-    if (!email) {
-      newErrors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
-      newErrors.email = 'Please enter a valid email';
-    }
-
-    if (!password) {
-      newErrors.password = 'Password is required';
-    } else if (password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters';
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+  const BottomGradient = () => {
+    return (
+      <>
+        <span className="absolute inset-x-0 -bottom-px block h-px w-full bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-0 transition duration-500 group-hover/btn:opacity-100" />
+        <span className="absolute inset-x-10 -bottom-px mx-auto block h-px w-1/2 bg-gradient-to-r from-transparent via-indigo-500 to-transparent opacity-0 blur-sm transition duration-500 group-hover/btn:opacity-100" />
+      </>
+    );
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    if (!validateForm()) return;
-
     setIsLoading(true);
 
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 2000));
 
-      // Mock successful login
       addToast(toast.success(
         'Welcome back!',
         'You have been successfully logged in.',
@@ -101,7 +52,7 @@ export default function LoginPage() {
         router.push('/');
       }, 1000);
 
-    } catch (error) {
+    } catch {
       addToast(toast.error(
         'Login failed',
         'Please check your credentials and try again.',
@@ -111,8 +62,6 @@ export default function LoginPage() {
       setIsLoading(false);
     }
   };
-
-
 
   const handleSocialLogin = (provider: string) => {
     addToast(toast.info(
@@ -169,8 +118,8 @@ export default function LoginPage() {
 
         {/* Login Form */}
         <AnimatedContainer animation="scaleIn" delay={0.2}>
-          <GlassmorphicCard className="p-8" variant="gradient" glowEffect>
-            <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="max-w-md w-full mx-auto rounded-2xl p-8 shadow-input bg-white dark:bg-black border border-gray-200 dark:border-gray-800">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <LabelInputContainer>
                 <Label htmlFor="email" className="text-gray-700 dark:text-gray-300">
                   Email Address
@@ -181,27 +130,13 @@ export default function LoginPage() {
                   </div>
                   <Input
                     id="email"
-                    ref={emailRef}
+                    name="email"
                     type="email"
                     placeholder="Enter your email"
-                    className={`pl-10 bg-white/50 dark:bg-black/50 border-white/30 focus:border-blue-500/50 transition-all duration-300 ${errors.email ? 'border-red-300 dark:border-red-600' : ''
-                      }`}
-                    onChange={() => {
-                      if (errors.email) {
-                        setErrors(prev => ({ ...prev, email: undefined }));
-                      }
-                    }}
+                    className="pl-10 bg-gray-50 dark:bg-zinc-800 border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 transition-all duration-300"
+                    required
                   />
                 </div>
-                {errors.email && (
-                  <motion.p
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-sm text-red-500 dark:text-red-400"
-                  >
-                    {errors.email}
-                  </motion.p>
-                )}
               </LabelInputContainer>
 
               <LabelInputContainer>
@@ -214,42 +149,20 @@ export default function LoginPage() {
                   </div>
                   <Input
                     id="password"
-                    ref={passwordRef}
-                    type={showPassword ? 'text' : 'password'}
+                    name="password"
+                    type="password"
                     placeholder="Enter your password"
-                    className={`pl-10 pr-12 bg-white/50 dark:bg-black/50 border-white/30 focus:border-blue-500/50 transition-all duration-300 ${errors.password ? 'border-red-300 dark:border-red-600' : ''
-                      }`}
-                    onChange={() => {
-                      if (errors.password) {
-                        setErrors(prev => ({ ...prev, password: undefined }));
-                      }
-                    }}
+                    className="pl-10 bg-gray-50 dark:bg-zinc-800 border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 transition-all duration-300"
+                    required
                   />
-                  <button
-                    type="button"
-                    onClick={togglePasswordVisibility}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors z-10"
-                  >
-                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-                  </button>
                 </div>
-                {errors.password && (
-                  <motion.p
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-sm text-red-500 dark:text-red-400"
-                  >
-                    {errors.password}
-                  </motion.p>
-                )}
               </LabelInputContainer>
 
               <div className="flex items-center justify-between">
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input
                     type="checkbox"
-                    checked={rememberMe}
-                    onChange={(e) => setRememberMe(e.target.checked)}
+                    name="rememberMe"
                     className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                   />
                   <span className="text-sm text-gray-600 dark:text-gray-300">
@@ -265,17 +178,21 @@ export default function LoginPage() {
                 </Link>
               </div>
 
-              <Button
+              <button
+                className="group/btn relative block h-12 w-full rounded-xl bg-gradient-to-br from-black dark:from-zinc-900 to-neutral-600 dark:to-zinc-900 font-semibold text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] transition-all duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
                 type="submit"
-                variant="gradient"
-                size="lg"
-                fullWidth
-                isLoading={isLoading}
-                icon={<ArrowRight className="w-5 h-5" />}
-                iconPosition="right"
+                disabled={isLoading}
               >
-                {isLoading ? 'Signing in...' : 'Sign In'}
-              </Button>
+                <div className="flex items-center justify-center gap-2">
+                  {isLoading ? (
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  ) : (
+                    <ArrowRight className="w-5 h-5" />
+                  )}
+                  {isLoading ? 'Signing in...' : 'Sign In'}
+                </div>
+                <BottomGradient />
+              </button>
             </form>
 
             {/* Divider */}
@@ -290,7 +207,7 @@ export default function LoginPage() {
               <button
                 type="button"
                 onClick={() => handleSocialLogin('Google')}
-                className="p-3 rounded-xl bg-white/50 dark:bg-black/50 border border-gray-200 dark:border-gray-700 hover:bg-white/70 dark:hover:bg-black/70 transition-all duration-300 hover:scale-105 flex items-center justify-center group"
+                className="p-3 rounded-xl bg-gray-50 dark:bg-zinc-800 border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-zinc-700 transition-all duration-300 hover:scale-105 flex items-center justify-center group"
               >
                 <Chrome className="w-5 h-5 text-gray-600 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
               </button>
@@ -298,7 +215,7 @@ export default function LoginPage() {
               <button
                 type="button"
                 onClick={() => handleSocialLogin('GitHub')}
-                className="p-3 rounded-xl bg-white/50 dark:bg-black/50 border border-gray-200 dark:border-gray-700 hover:bg-white/70 dark:hover:bg-black/70 transition-all duration-300 hover:scale-105 flex items-center justify-center group"
+                className="p-3 rounded-xl bg-gray-50 dark:bg-zinc-800 border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-zinc-700 transition-all duration-300 hover:scale-105 flex items-center justify-center group"
               >
                 <Github className="w-5 h-5 text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors" />
               </button>
@@ -306,18 +223,18 @@ export default function LoginPage() {
               <button
                 type="button"
                 onClick={() => handleSocialLogin('Apple')}
-                className="p-3 rounded-xl bg-white/50 dark:bg-black/50 border border-gray-200 dark:border-gray-700 hover:bg-white/70 dark:hover:bg-black/70 transition-all duration-300 hover:scale-105 flex items-center justify-center group"
+                className="p-3 rounded-xl bg-gray-50 dark:bg-zinc-800 border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-zinc-700 transition-all duration-300 hover:scale-105 flex items-center justify-center group"
               >
                 <Apple className="w-5 h-5 text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors" />
               </button>
             </div>
-          </GlassmorphicCard>
+          </div>
         </AnimatedContainer>
 
         {/* Sign Up Link */}
         <AnimatedContainer animation="fadeInUp" delay={0.4} className="text-center mt-8">
           <p className="text-gray-600 dark:text-gray-300">
-            Don't have an account?{' '}
+            Don&apos;t have an account?{' '}
             <Link
               href="/signup"
               className="text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 font-medium transition-colors"
@@ -329,7 +246,7 @@ export default function LoginPage() {
 
         {/* Security Features */}
         <AnimatedContainer animation="fadeInUp" delay={0.6} className="mt-8">
-          <GlassmorphicCard className="p-6" variant="frosted">
+          <div className="bg-white/50 dark:bg-black/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-200 dark:border-gray-700">
             <div className="flex items-center gap-3 mb-4">
               <Shield className="w-5 h-5 text-green-500" />
               <span className="text-sm font-medium text-gray-900 dark:text-white">
@@ -351,7 +268,7 @@ export default function LoginPage() {
                 <span>GDPR compliant</span>
               </div>
             </div>
-          </GlassmorphicCard>
+          </div>
         </AnimatedContainer>
       </div>
     </div>

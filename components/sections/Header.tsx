@@ -32,14 +32,14 @@ export function Header() {
 
   return (
     <div className="relative w-full">
-      <Navbar>
+      <Navbar >
         {/* Desktop Navigation */}
-        <NavBody>
+        <NavBody className="mb-1 border-b border-white">
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
-            <NavbarButton variant="secondary">Login</NavbarButton>
-            <NavbarButton variant="primary">Book a call</NavbarButton>
+            <NavbarButton variant="secondary" href="/login">Login</NavbarButton>
+            <NavbarButton variant="primary" href="/signup">Sign Up</NavbarButton>
           </div>
         </NavBody>
 

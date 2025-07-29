@@ -72,7 +72,7 @@ export default function AnimatedContainer({
   once = true,
 }: AnimatedContainerProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { threshold, once });
+  const isInView = useInView(ref, { once });
   const controls = useAnimation();
 
   useEffect(() => {
@@ -124,7 +124,7 @@ export function StaggerContainer({
   once = true,
 }: StaggerContainerProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { threshold, once });
+  const isInView = useInView(ref, { once });
 
   const containerVariants = {
     hidden: {},

@@ -265,7 +265,7 @@ export default function DemoVideo() {
             </AnimatedContainer>
 
             {/* What You'll Learn */}
-            <AnimatedContainer animation="fadeInRight" delay={0.6}>
+            {/* <AnimatedContainer animation="fadeInRight" delay={0.6}>
               <GlassmorphicCard className="p-6" variant="gradient">
                 <h3 className="text-xl font-bold gradient-text-primary mb-6">
                   What You'll Learn
@@ -302,7 +302,7 @@ export default function DemoVideo() {
                   </Button>
                 </div>
               </GlassmorphicCard>
-            </AnimatedContainer>
+            </AnimatedContainer> */}
 
             {/* Quick Stats */}
             <AnimatedContainer animation="fadeInRight" delay={0.8}>
