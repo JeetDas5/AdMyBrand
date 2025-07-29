@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import AnimationInitializer from "@/components/ui/AnimationInitializer";
+import { ToastProvider } from "@/components/ui/Toast";
 
 const bricolageGrotesque = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -10,8 +11,10 @@ const bricolageGrotesque = Bricolage_Grotesque({
 });
 
 export const metadata: Metadata = {
-  title: "AdMyBrand",
-  description: "AI powered ad platform",
+  title: "AdMyBrand - Transform Your Advertising with AI",
+  description: "AI-powered advertising platform that creates, optimizes, and manages your campaigns across all platforms for better results with less effort.",
+  keywords: "AI advertising, digital marketing, campaign optimization, ad automation, marketing platform",
+  authors: [{ name: "AdMyBrand Team" }]
 };
 
 export default function RootLayout({
@@ -22,8 +25,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${bricolageGrotesque.variable} antialiased`}>
-        <AnimationInitializer />
-        {children}
+        <ToastProvider>
+          <AnimationInitializer />
+          {children}
+        </ToastProvider>
       </body>
     </html>
   );
