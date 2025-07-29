@@ -194,9 +194,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 If you have any questions or need help, please:
 - Open an issue on GitHub
-- Contact us at support@admybrand.com
-- Visit our documentation at [docs.admybrand.com](https://docs.admybrand.com)
+- Contact us at jeet15083011@gmail.com
+- Visit my github [JeetDas5](https://github.com/JeetDas5)
 
 ---
 
-**Built with ❤️ by the AdMyBrand team**
+**Built with ❤️ by the Jeet**
